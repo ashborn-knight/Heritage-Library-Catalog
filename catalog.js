@@ -122,12 +122,37 @@ function exportToJSON(catalog) {
 function exportToCSV(catalog) {
   const header = "Title,Author,Year,Location";
   const rows = [];
-
   for (let i = 0; i < catalog.length; i++) {
     const entry = catalog[i];
-    const row = `"${entry.title}","${entry.author}",${entry.year},"${entry.location}"`;
-    rows.push(row);
+    rows.push(`"${entry.title}","${entry.author}",${entry.year},"${entry.location}"`);
   }
-
-  return header + "\n" + rows.join("\n");
+  let csv = header;
+  for (let i = 0; i < rows.length; i++) {
+    csv = csv + "\n" + rows[i];
+  }
+  return csv;
 }
+
+console.log(exportToCSV(catalog));
+
+// Summary
+console.log(catalog.length);                // total number of books
+console.log(Object.keys(byDecade).length);  // number of decade groups
+
+let oldestYear = Infinity;
+let newestYear = 0;
+
+for (let i = 0; i < catalog.length; i++) {
+  const entry = catalog[i];
+  if (entry.year !== "Unknown") {
+    if (entry.year < oldestYear) {
+      oldestYear = entry.year;
+    }
+    if (entry.year > newestYear) {
+      newestYear = entry.year;
+    }
+  }
+}
+
+console.log(oldestYear);
+console.log(newestYear);
