@@ -135,7 +135,7 @@ function exportToCSV(catalog) {
 
 console.log(exportToCSV(catalog));
 
-// Summary
+// Summary of the concise implementatioon of the demonstration
 console.log(catalog.length);                // total number of books
 console.log(Object.keys(byDecade).length);  // number of decade groups
 
